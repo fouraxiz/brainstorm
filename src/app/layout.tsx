@@ -20,7 +20,6 @@ export const metadata: Metadata = {
   },
   description:
     "Brainstorm Communications, Dhaka, Bangladesh: woven labels, printed & care labels, hang tags, heat transfers, patches, poly bags and complete garments accessories & packaging since 2013.",
-  icons: { icon: "/images/brainstorm-favion.png" },
   openGraph: {
     title: site.name,
     description: site.tagline,
