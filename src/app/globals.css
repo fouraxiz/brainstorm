@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+:root {
+  --brand: #ed1c24;
+  --brand-dark: #b9121a;
+  --ink: #231f20;
+  --steel: #6d6e71;
+  --mist: #f4f4f5;
+  --background: #ffffff;
+  --foreground: #231f20;
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-ink: var(--ink);
+  --color-steel: var(--steel);
+  --color-mist: var(--mist);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Decorative rings poke past the edges; clip (not hidden) keeps sticky working */
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--brand);
+  color: #fff;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-spin-slow,
+  .animate-float,
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
+/* Spiral rings decoration (brand motif) */
+.rings {
+  background: repeating-radial-gradient(
+    circle at center,
+    transparent 0 22px,
+    currentColor 22px 24px
+  );
+  -webkit-mask: radial-gradient(circle, #000 60%, transparent 71%);
+  mask: radial-gradient(circle, #000 60%, transparent 71%);
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 40s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #ff4b52, var(--brand) 50%, #ff7a45);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.diagonal-cut {
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+}
